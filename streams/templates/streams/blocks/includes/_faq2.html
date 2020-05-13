@@ -1,0 +1,52 @@
+{% load wagtailcore_tags wagtailimages_tags static mathfilters streams_tags%}
+
+<div class="swiper-slide">
+    <div class="col-lg-4 col-md-12 col-sm-12" data-swiper-parallax="-100">
+        <div class="slider-faqs-thumb">
+            <img src="{% static faq.svg_icon %}.svg" class="tenforward-icon">
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12 col-sm-12" data-swiper-parallax="-300">
+        <h5 class="slider-faqs-title">{{ faq.heading }}</h5>
+        <p>
+        {{ faq.text1 }}
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <ul class="list list--standard">
+                {% int_to_word 0 as lp %}
+                {% lst_maker faq.bullets|length as llst %}
+                    {% for i in faq.bullets %}
+                        {% if forloop.counter <= faq.bullets|length|intdiv:2 %}
+                    <li>
+                        <svg class="tenforward-icon tenforward-icon-correct-symbol-1">
+                            <use xlink:href="#tenforward-icon-correct-symbol-1"></use>
+                        </svg>
+                        <a href="#">{{ i.bullet }}</a>
+                    </li>
+                            {% if forloop.counter == faq.bullets|length|intdiv:2 %}
+                                {% int_to_word 1 as lp %}
+                            {% endif %}
+                        {% endif %}
+            {% if lp == 'One' %}
+                </ul>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <ul class="list list--standard">
+            {% endif %}
+                    {% if forloop.counter > faq.bullets|length|intdiv:2 %}
+                    <li>
+                        <svg class="tenforward-icon tenforward-icon-correct-symbol-1">
+                            <use xlink:href="#tenforward-icon-correct-symbol-1"></use>
+                        </svg>
+                        <a href="#">{{ i.bullet }}</a>
+                    </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

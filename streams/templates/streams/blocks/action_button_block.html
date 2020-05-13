@@ -1,0 +1,4 @@
+{% load streams_tags %}
+{% link_url self.link as the_url %}
+<a href="{{ the_url }}" class="action-button action-button--{{ self.style }} btn {{ self.style }}">{{ self.text }}</a>
+

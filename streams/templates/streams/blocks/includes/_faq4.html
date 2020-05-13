@@ -1,0 +1,31 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+ <div class="swiper-slide">
+    <div class="col-lg-4 col-md-12 col-sm-12" data-swiper-parallax="-100">
+        <div class="slider-faqs-thumb">
+            <img src="{% static faq.svg_icon %}.svg" class="tenforward-icon">
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12 col-sm-12" data-swiper-parallax="-300">
+        <h5 class="slider-faqs-title">{{ faq.heading }}</h5>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <p>
+                    {{ faq.text1 }}
+                </p>
+                <p>{{ faq.text2 }}</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <p>{{ faq.text3 }}</p>
+                <div class="play-with-title">
+                    <a href="{{ faq.video }}" class="video-control js-popup-iframe">
+                        <img src="{% static 'img/play.png' %}" alt="play">
+                    </a>
+                    <h6 class="play-title">{{ faq.video_slug }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

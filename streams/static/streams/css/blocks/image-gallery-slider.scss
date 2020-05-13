@@ -1,0 +1,50 @@
+.image-gallery-slider {
+  &__inner {
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__item {
+    img {
+      // Ensures that images resize themselves properly on phones.
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__image-details {
+    @include image-details;
+  }
+
+  &__carousel-indicators-container {
+    width: 100%;
+    position: relative;
+    margin-top: 15px;
+  }
+
+  // These rules override a bunch of stuff from bootstrap.
+  &__carousel-indicators {
+    position: static;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: left;
+
+    li {
+      text-indent: 0;
+      border-radius: 0;
+      border: none;
+      margin: 0;
+      width: 75px;
+      height: 75px;
+      margin: 5px 5px 0 0;
+    }
+  }
+
+  &__carousel-control-prev,
+  &__carousel-control-next {
+    display: none;
+}
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags streams_tags compress %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+   {% for block in page.content %}
+        {%  include_block block with client=self.client %}
+    {% endfor %}
+
+    {% comment %}
+ <script defer src="{% static 'streams/js/layouts.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'streams/js/admin/image-panel.js' %}"></script>
+    {% endcomment %}
+{% endblock content %}

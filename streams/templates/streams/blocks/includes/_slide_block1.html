@@ -1,0 +1,57 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% if aslide %}
+
+<div class="swiper-slide {{ aslide.slide.bg_type }} main-slider-bg-light">
+
+					<div class="container">
+						<div class="row table-cell">
+
+							<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+
+								<div class="slider-content align-center">
+
+									<h1 class="slider-content-title with-decoration" data-swiper-parallax="-100">
+										{{ aslide.slide.heading }}
+
+										<svg class="first-decoration tenforward-icon tenforward-icon-arrow-left">
+											<use xlink:href="#tenforward-icon-arrow-left"></use>
+										</svg>
+
+										<svg class="second-decoration tenforward-icon tenforward-icon-arrow-left">
+											<use xlink:href="#tenforward-icon-arrow-left"></use>
+										</svg>
+
+									</h1>
+                                    {% if aslide.slide.text %}
+                                        <h6 class="slider-content-text" data-swiper-parallax="-200">
+                                            {{ aslide.slide.text }}
+                                        </h6>
+                                    {% endif %}
+
+									<div class="main-slider-btn-wrap" data-swiper-parallax="-300">
+
+										<a href="03_products.html" class="btn btn--yellow btn--with-shadow">
+											Learn More
+										</a>
+
+										<a href="02_company.html" class="btn btn-border btn--with-shadow c-primary">
+											Get Started Now
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                {% if aslide.slide.image %}
+                                    <div class="slider-thumb" data-swiper-parallax="-400" data-swiper-parallax-duration="600">
+                                        {% image aslide.slide.image max-1280x640 %}
+                                    </div>
+                                {% endif %}
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+{% endif %}

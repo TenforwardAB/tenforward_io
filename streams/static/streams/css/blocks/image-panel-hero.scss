@@ -1,0 +1,28 @@
+.block-ImagePanelBlock {
+  .hero {
+    background-size: cover;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .hero-body {
+    color: $white;
+    width: 60%;
+    margin: 0 auto;
+
+    @include portrait-phone-only {
+      width: 90%;
+    }
+  }
+
+  h1 {
+    font-family: $font-sans-serif-bold;
+    font-size: 4em;
+  }
+
+  h2 {
+    font-family: $font-sans-serif;
+    font-size: 1.5em;
+  }
+}

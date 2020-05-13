@@ -1,0 +1,38 @@
+.sidebar-layout {
+  &__sidebar {
+    @include portrait-phone-only {
+      // The markup sets a max-width and a user-defined float value in the markup, so we need !important to negate
+      // them on portrait phones.
+      max-width: unset !important;
+      float: none !important;
+    }
+
+    & > section {
+      // Apply some spacing between blocks in the sidebar.
+      padding-bottom: 10px;
+      &:last-child {
+        padding-bottom: 40px;
+      }
+    }
+  }
+
+  // Must use margin on these, rather than padding, to avoid the images widening to overlap with the padding.
+  &.right &__sidebar {
+    @include landscape-phone {
+      margin-left: 25px;
+    }
+  }
+  &.left &__sidebar {
+    @include landscape-phone {
+      margin-right: 25px;
+    }
+  }
+
+  &__rich-text {
+    padding: 0 10px;
+
+    @include desktop {
+      padding: 0;
+    }
+  }
+}

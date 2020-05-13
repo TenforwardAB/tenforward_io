@@ -1,0 +1,36 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+<div class="swiper-slide">
+    <div class="col-lg-4 col-md-12 col-sm-12" data-swiper-parallax="-100">
+        <div class="slider-faqs-thumb">
+            <img src="{% static faq.svg_icon %}.svg" class="tenforward-icon">
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12 col-sm-12" data-swiper-parallax="-300">
+        <h5 class="slider-faqs-title">{{ faq.heading }}</h5>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <p>
+                    {{ faq.text1 }}
+                </p>
+                <p>{{ faq.text2 }}</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <p>{{ faq.text3 }}</p>
+                <ul class="list list--standard">
+
+                    {% for bullet in faq.bullets %}
+                    <li>
+                        <svg class="tenforward-icon tenforward-icon-correct-symbol-1">
+                            <use xlink:href="#tenforward-icon-correct-symbol-1"></use>
+                        </svg>
+                        <a href="#">{{ bullet.bullet }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+<!-- Info Boxes -->
+
+<section class="medium-padding100">
+		<div class="container">
+			<div class="row">
+                {% for i in '012'|make_list %}
+                    {%  box_or_blank self.boxes forloop.counter0 as box%}
+                    {% comment %}We need to have edge boxes if there are 2 or 3 boxes{% endcomment %}
+                    {% if self.boxes|length == 2 and forloop.counter0 != 1 or self.boxes|length == 3 or  self.boxes|length == 1 and forloop.counter0 == 1%}
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="tenf-module tenf-info-box info-box--standard-hover">
+
+						<div class="info-box-image">
+							<img class="tenforward-icon" src="{% static box.svg_icon %}.svg" alt="smartphone">
+							<img class="cloud" src="{% static 'img/clouds' %}{% random_int 8 10 %}.png" alt="cloud">
+						</div>
+                        {% link_url box.url as url %}
+						<div class="info-box-content">
+                        {% if url %}
+							<a href="{{ url }}" class="h5 info-box-title">{{ box.heading }}</a>
+                        {% else %}
+                            <p class="h5 info-box-title">{{ box.heading }}</p>
+                        {% endif %}
+							<p class="info-box-text">
+                                {{ box.text }}
+							</p>
+						</div>
+
+                        {% if url %}
+
+                        <a href="{{ url }}" class="btn-next">
+							<svg class="tenforward-icon icon-hover tenforward-icon-arrow-right-1">
+								<use xlink:href="#tenforward-icon-arrow-right-1"></use>
+							</svg>
+							<svg class="tenforward-icon tenforward-icon-arrow-right1">
+								<use xlink:href="#tenforward-icon-arrow-right1"></use>
+							</svg>
+						</a>
+                        {% endif %}
+
+					</div>
+				</div>
+                {% else%}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="tenf-module tenf-info-box info-box--standard-hover">
+
+						<div class="info-box-image">
+							<img class="cloud" src="{% static 'img/clouds' %}{% random_int 8 10 %}.png" alt="cloud">
+						</div>
+
+						<div class="info-box-content">
+							<p class="info-box-text">
+							</p>
+						</div>
+					</div>
+				</div>
+                    {% endif %}
+                {% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<!-- ... end Info Boxes -->

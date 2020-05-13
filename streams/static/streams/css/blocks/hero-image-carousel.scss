@@ -1,0 +1,72 @@
+// These rules overrides several bootstrap components.
+.hero-image-carousel {
+  overflow: hidden;
+  position: relative;
+
+  &__image {
+    height: inherit;
+    width: 100%;
+  }
+
+  &__wrapper-link {
+    @include portrait-tablet {
+      @include wrapper-link;
+    }
+  }
+
+  &__text-gradient {
+    @include portrait-tablet {
+      @include text-gradient--right;
+    }
+  }
+
+  &__carousel-caption {
+    position: static;
+    text-align: left;
+    padding: 10px;
+
+    @include portrait-tablet {
+      position: absolute;
+      left: 30%;
+      right: auto;
+      bottom: auto;
+      top: 25%;
+      padding: 0 10px;
+    }
+  }
+
+  &__carousel-indicators {
+    @include carousel_indicators;
+  }
+
+  &__caption-title {
+    font-size: #{24px / $font-size-base}em;
+    font-weight: bold;
+    color: $goldenrod;
+
+    @include portrait-tablet {
+      font-size: 2.5em;
+    }
+
+    a, a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__caption-text {
+    font-family: $font-vaud;
+    color: $black-text;
+
+    @include portrait-tablet {
+      font-weight: bold;
+      padding-right: 3em;
+      color: white;
+    }
+  }
+
+  &__carousel-control-prev,
+  &__carousel-control-next {
+    display: none;
+  }
+}

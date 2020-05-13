@@ -1,0 +1,31 @@
+.callout {
+  padding: 20px;
+  font-family: $font-sans-serif-bold;
+  &--fixed {
+    overflow: hidden;
+  }
+  &.bg {
+    background-size: cover;
+  }
+
+  @include desktop {
+    padding: 40px 40px 0;
+  }
+
+  &__title {
+    font-size: 25px;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 90%;
+
+    @include portrait-tablet {
+      font-size: 28px;
+    }
+
+    @include desktop {
+      font-size: 35px;
+    }
+  }
+}
+

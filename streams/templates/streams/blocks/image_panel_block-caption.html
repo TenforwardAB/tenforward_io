@@ -1,0 +1,10 @@
+{% load wagtailimages_tags streams_tags %}
+
+<div class="image-panel-caption">
+  {% link_url self.link as url %}
+  {% if url %}
+    <a class="image-panel-caption__image-link" href="{{ url }}"><span></span></a>
+  {% endif %}
+  {% include 'streams/blocks/image_panel_block-image.html' with image=self.image %}
+  {% include 'streams/image_details.html' with image=self.image parent_block="image-panel-caption" %}
+</div>

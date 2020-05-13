@@ -1,0 +1,57 @@
+// Image Listing -- title and description on left or right sides
+
+.image-panel-listing {
+  flex-wrap: wrap;
+
+  @include portrait-tablet {
+    flex-wrap: unset;
+  }
+
+  &__body {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2em;
+    @include IE-compatible-flex-width(100%);
+
+    @include portrait-tablet {
+      @include IE-compatible-flex-width(50%);
+    }
+
+    @include desktop {
+      // Matches bootstrap's .media-body. We only want this on desktop because only smaller devices need it to be 50%.
+      flex: 1;
+
+      // The "right" vs "left" refers to the image, so the body is opposite.
+      &--right {
+        padding-left: 0;
+      }
+    }
+
+    &--left {
+      padding-left: 25px;
+    }
+
+    h4 {
+      margin-top: 10px;
+      font-family: $font-serif;
+    }
+  }
+  &__image-details {
+    @include image-details;
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @include desktop {
+      flex: unset;
+
+      img {
+        width: auto;
+      }
+    }
+  }
+}

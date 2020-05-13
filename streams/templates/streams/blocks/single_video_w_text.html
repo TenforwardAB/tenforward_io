@@ -1,0 +1,42 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+<!-- Video -->
+
+	<section class="{{ self.bg_type }} background-contain pt100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="tenf-module tenf-heading">
+						<h6 class="heading-sup-title">Watch the video</h6>
+						<h2 class="heading-title">{{ self.heading }}</h2>
+						<p class="heading-text">{{ self.text }}
+						</p>
+					</div>
+					<a href="02_company.html" class="btn btn-small btn--icon-right btn-border btn--with-shadow c-primary">
+						<svg class="tenforward-icon tenforward-icon-arrow-right1">
+							<use xlink:href="#tenforward-icon-arrow-right1"></use>
+						</svg>
+						<div class="text">
+							<span class="title">Get Started Now</span>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="tenf-module tenf-our-video">
+						<div class="video-thumb">
+                            {% if self.video_thumb %}
+                                {% image self.video_thumb max-580x495 %}
+                                {% else %}
+                                <img src="{%  static 'streams/img/video_thumb.png' %}">
+                            {% endif %}
+							<a href="{{ self.video }}" class="video-control js-popup-iframe">
+								<img src="{%  static 'img/play.png' %}">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ... end Video -->

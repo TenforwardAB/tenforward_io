@@ -1,0 +1,73 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+<!-- FAQS Slider -->
+
+<section class="tenf-module tenf-module-slider pt100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb30">
+                <div class="tenf-module tenf-heading">
+                    <h6 class="heading-sup-title">FAQ</h6>
+                    <h2 class="heading-title">{% int_to_word self.faqs|length %} answers to big questions</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="swiper-container navigation-bottom" data-effect="fade">
+                    <div class="slider-slides">
+                    {% lst_maker self.faqs|length as llst %}
+                        {% for i in llst %}
+                        <a href="#" class="slides-item">
+                            {{ forloop.counter }}
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-wrapper">
+
+                    {% for faq in self.faqs %}
+                        {% if faq.bullets|length == 2 and not faq.video %}
+                            {% include 'streams/blocks/includes/_faq3.html' with faq=faq %}
+                        {% elif faq.video %}
+                            {% include 'streams/blocks/includes/_faq4.html' with faq=faq %}
+                        {% elif faq.text2 == '' and faq.text3 == '' or faq.bullets|length > 4 %}
+                            {% include 'streams/blocks/includes/_faq2.html' with faq=faq %}
+                        {% else %}
+                                {% include 'streams/blocks/includes/_faq1.html' with faq=faq%}
+                        {% endif %}
+
+                    {% endfor %}
+                    </div>
+
+                    <!--Prev next buttons-->
+
+                    <div class="btn-slider-wrap navigation-left-bottom">
+
+                        <div class="btn-prev">
+                            <svg class="tenforward-icon icon-hover tenforward-icon-arrow-left-1">
+                                <use xlink:href="#tenforward-icon-arrow-left-1"></use>
+                            </svg>
+                            <svg class="tenforward-icon tenforward-icon-arrow-left1">
+                                <use xlink:href="#tenforward-icon-arrow-left1"></use>
+                            </svg>
+                        </div>
+
+                        <div class="btn-next">
+                            <svg class="tenforward-icon icon-hover tenforward-icon-arrow-right-1">
+                                <use xlink:href="#tenforward-icon-arrow-right-1"></use>
+                            </svg>
+                            <svg class="tenforward-icon tenforward-icon-arrow-right1">
+                                <use xlink:href="#tenforward-icon-arrow-right1"></use>
+                            </svg>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ... end FAQS Slider -->

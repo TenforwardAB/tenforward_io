@@ -1,0 +1,33 @@
+/******** Text block general settings **********/
+
+// Background image for all listing types
+.listing-background-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: auto;
+  width: 100%;
+  z-index: -100;
+}
+
+.bg-color-white { background-color: $white; }
+.bg-color-black { background-color: $black; }
+.bg-color-orange { background-color: $orange; }
+.bg-color-ltgray { background-color: $ltgray; }
+.bg-color-midgray { background-color: $midgray; }
+.bg-color-darkergray { background-color: $darkergray; }
+.bg-color-dkgray { background-color: $dkgray; }
+.bg-color-olivegreen { background-color: $olivegreen; }
+.bg-color-purple { background-color: $purple; }
+.bg-color-darkteal { background-color: $darkteal; }
+
+.text-color-white { color: $white; }
+.text-color-dkgray { color: $dkgray; }
+.text-color-black { color: $black; }
+
+// The image_panel_block-image template renders a fallthrough responsive_image when it doesn't get dimensions from
+// fixed_dimensions or parent. Such images must size themselves to the device, as they are rendered at 1000px wide.
+.responsive-image-fallthrough {
+  width: 100%;
+  height: auto;
+}

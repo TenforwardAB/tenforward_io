@@ -1,0 +1,35 @@
+$white:      #ffffff;
+$ltgray:     #c8c8c8;
+$gray:       #aaa99f;
+$medgray:    #76777b;
+$midgray:    #afafaf;
+$dkgray:     #616265;
+$darkergray: #696b73;
+$ltbrngray:  #e9e7e4;
+$crimson:    #731936;
+$black:      #000000;
+$black-text: #333333;
+$goldenrod:  #ecaa00;
+$maroon:     #7a303f;
+$olivegreen: #a9b734;
+$purple:     #95348d;
+$darkteal:   #005e5c;
+// #ff6e1e is the exact shade of orange that the Caltech wordmark has. Unfortunately, that shade is too light on a
+// white background to satisfy the WAVE accessibility tool. So we switched the theme's main color to $orange-accessible.
+$orange:            #ff6e1e;
+$orange-accessible: #D14900;
+
+// Media Query Breakpoints
+$small-viewport: 500px;
+$medium-viewport: 768px;
+$desktop-viewport: 1000px;
+
+$screen-phone: 480px;
+$screen-tablet: 768px;
+
+// To pixel-bitch the width for something, use width: <intended>px / $responsive-grid-w * 100%;
+$responsive-grid-w: 1000px;
+
+// Fonts
+$font-size-base: 14px;
+$line-height-base: 1.7;

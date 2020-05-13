@@ -1,0 +1,28 @@
+.image-panel-caption {
+  overflow: hidden;
+  margin-bottom: 2em;
+  position: relative;
+  @include responsive-images-inside;
+
+  &__image-link {
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 11;
+      cursor: pointer;
+    }
+  }
+
+  &__image-details {
+    @include image-details;
+  }
+}
+
+@media (min-width: $small-viewport) {
+  .image-panel-caption {
+    margin-bottom: 1em;
+  }
+}

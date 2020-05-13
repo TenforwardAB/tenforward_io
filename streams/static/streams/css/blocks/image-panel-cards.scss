@@ -1,0 +1,54 @@
+// This CSS is loosely based on https://bootsnipp.com/snippets/featured/bootstrap-4-card
+
+// Image Cards -- title and description on bottom
+.image-panel-card {
+  font-size: 1em;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+
+  & img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__block {
+    font-size: 1em;
+    margin: 0;
+    padding: 1em;
+    border: none;
+  }
+
+  &__title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+    color: $dkgray;
+
+    a {
+      color: $dkgray;
+    }
+  }
+
+  &__text {
+    margin-top: .5em;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, .68);
+  }
+
+  &__image-details {
+    @include image-details;
+  }
+}
+
+// For landscape-mode phones:
+// rrollins 2017-10-19: Except, no, because these rules apply on portrait tablets, too. However, the behavior we get
+// with these rules IS what we want, even though it's applying to more than we say it should be.
+@media (min-width: $screen-phone)
+        and (max-width: $responsive-grid-w) {
+  .image-panel-card img {
+    width: 100%;
+    height: auto;
+  }
+}

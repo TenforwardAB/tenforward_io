@@ -1,0 +1,43 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+<div class="swiper-slide">
+    <div class="col-lg-4 col-md-12 col-sm-12" data-swiper-parallax="-100">
+        <div class="slider-faqs-thumb">
+            <img src="{% static faq.svg_icon %}.svg" class="tenforward-icon">
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12" data-swiper-parallax="-100">
+        <h5 class="slider-faqs-title">{{ faq.heading }}</h5>
+        <p>
+            {{ faq.text1 }}
+        </p>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="tenf-module tenf-info-box info-box--standard">
+                    <div class="info-box-image display-flex">
+                        <svg class="tenforward-icon tenforward-icon-checked">
+                            <use xlink:href="#tenforward-icon-checked"></use>
+                        </svg>
+                        <h6 class="info-box-title">{{ faq.bullets.0.bullet }}</h6>
+                    </div>
+                    <p class="info-box-text">
+                        {{ faq.text2 }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="tenf-module tenf-info-box info-box--standard">
+                    <div class="info-box-image display-flex">
+                        <svg class="tenforward-icon tenforward-icon-checked">
+                            <use xlink:href="#tenforward-icon-checked"></use>
+                        </svg>
+                        <h6 class="info-box-title">{{ faq.bullets.1.bullet }}</h6>
+                    </div>
+                    <p class="info-box-text"> {{ faq.text2 }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

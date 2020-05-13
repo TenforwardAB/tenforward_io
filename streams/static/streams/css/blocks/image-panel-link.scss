@@ -1,0 +1,43 @@
+.image-panel-link {
+  position: relative;
+  @include responsive-images-inside;
+
+  &__image-link {
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 11;
+      cursor: pointer;
+    }
+  }
+
+  &__text-gradient {
+    @include text-gradient--bottom;
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    color: white;
+    margin: 0 15px 10px 20px;
+    font-family: $font-sans-serif-bold;
+    font-size: 16px;
+
+    span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .icon {
+      color: $orange-accessible;
+      font-size: 25px;
+      // display: table-cell; vertical-align: middle; doesn't completely work with this icon so nudge it up a little
+      padding-bottom: 3px;
+    }
+  }
+}

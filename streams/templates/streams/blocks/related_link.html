@@ -1,0 +1,6 @@
+{% load streams_tags %}
+
+{% link_url self.link as url %}
+{% if url %}
+  <a class="related-link list-group-item" href="{{ url }}">{{ self.text }}</a>
+{% endif %}

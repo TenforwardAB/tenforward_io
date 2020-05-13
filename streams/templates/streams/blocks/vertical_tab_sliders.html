@@ -1,0 +1,68 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+<!-- Slider with vertical tabs -->
+
+	<section class="tenf-module tenf-module-slider slider-tabs-vertical-line">
+
+		<div class="swiper-container" data-show-items="1">
+			<div class="swiper-wrapper">
+                {% for tab in self.tabs %}
+				<div class="swiper-slide {{ tab.background }}" data-mh="slide">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-0 col-sm-12 col-xs-12">
+								<div class="slider-tabs-vertical-thumb">
+                                    {% if tab.image %}
+                                    {% image tab.image max-373x613 %}
+                                    {% endif %}
+								</div>
+							</div>
+							<div class="col-lg-6 col-lg-offset-1 col-md-7 col-md-offset-0 col-sm-12 col-xs-12">
+								<div class="tenf-module tenf-heading custom-color c-white">
+                                    {% if tab.top_mini_heading %}
+									<h6 class="heading-sup-title">{{ tab.top_mini_heading }}</h6>
+                                    {% endif %}
+									<h2 class="heading-title">{{ tab.major_heading }}</h2>
+									<div class="heading-text">{{ tab.text }}
+									</div>
+								</div>
+
+								<a href="#" class="btn btn-market btn--with-shadow">
+									<svg class="tenforward-icon tenforward-icon-apple-logotype-1">
+										<use xlink:href="#tenforward-icon-apple-logotype-1"></use>
+									</svg>
+									<div class="text">
+										<span class="sup-title">Download on the</span>
+										<span class="title">App Store</span>
+									</div>
+								</a>
+
+								<a href="#" class="btn btn-market btn--with-shadow">
+									<img class="tenforward-icon" src="svg-icons/google-play.svg" alt="google">
+									<div class="text">
+										<span class="sup-title">Download on the</span>
+										<span class="title">Google Play</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            {% endfor %}
+
+			<div class="slider-slides slider-slides--vertical-line">
+                {% for i in self.tabs %}
+				<a href="#" class="slides-item">
+					<span class="round primary"></span>0{{ forloop.counter }}.
+				</a>
+
+                {% endfor %}
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- ... Slider with vertical tabs -->

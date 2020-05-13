@@ -1,0 +1,74 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+<!-- Info Boxes2 -->
+
+	<section class="bg-9 background-contain medium-padding120">
+		<div class="container">
+			<div class="row">
+				<div class="display-flex info-boxes">
+					<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+						<div class="tenf-module tenf-info-box info-box--standard-round icon-right negative-margin-right150">
+							<div class="info-box-image">
+								<img src="{% static self.left_info_top.svg_icon %}.svg" class="tenforward-icon">
+							</div>
+							<div class="info-box-content">
+								<h5 class="info-box-title">{{ self.left_info_top.heading}}</h5>
+								<p class="info-box-text">
+                                    {{ self.left_info_top.text}}
+								</p>
+							</div>
+						</div>
+
+						<div class="tenf-module tenf-info-box info-box--standard-round icon-right negative-margin-right150">
+							<div class="info-box-image">
+								<img src="{% static self.left_info_bottom.svg_icon %}.svg" class="tenforward-icon">
+							</div>
+							<div class="info-box-content">
+								<h5 class="info-box-title">{{ self.left_info_bottom.heading}}</h5>
+								<p class="info-box-text">
+                                    {{ self.left_info_bottom.text}}
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 align-center">
+						{% image self.mid_image max-360x591 %}
+                        {% link_url self.url as url %}
+                        {% if url %}
+						<a href={{ url }} class="btn btn--{{ self.button_color }} btn--with-shadow">
+							Learn More
+						</a>
+                        {% endif %}
+					</div>
+
+					<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+						<div class="tenf-module tenf-info-box info-box--standard-round negative-margin-left150">
+							<div class="info-box-image">
+								<img src="{% static self.right_info_top.svg_icon %}.svg" class="tenforward-icon">
+							</div>
+							<div class="info-box-content">
+								<h5 class="info-box-title">{{ self.right_info_top.heading }}</h5>
+								<p class="info-box-text">
+                                    {{ self.right_info_top.text }}
+								</p>
+							</div>
+						</div>
+
+						<div class="tenf-module tenf-info-box info-box--standard-round negative-margin-left150">
+							<div class="info-box-image">
+								<img src="{% static self.right_info_bottom.svg_icon %}.svg" class="tenforward-icon">
+							</div>
+							<div class="info-box-content">
+								<h5 class="info-box-title">{{ self.right_info_bottom.heading}}</h5>
+								<p class="info-box-text">
+                                    {{ self.right_info_bottom.text }}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ... Info Boxes -->

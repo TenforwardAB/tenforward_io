@@ -1,0 +1,414 @@
+{% load static wagtailuserbar menu_tags compress streams_tags%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        {# Global stylesheets #}
+        {% compress css %}
+            <link type="text/x-scss" href="{% static 'scss/blog.scss' %}" rel="stylesheet" media="screen">
+        {% endcompress %}
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+<body class="tenf-grid">
+<!-- Preloader -->
+ {% wagtailuserbar %}
+<!--<div id="hellopreloader" style="display: block; position: fixed;z-index: 99999;top: 0;left: 0;width: 100%;height: 100%;min-width: 100%;background: #66b5ff url(svg/preload.svg) center center no-repeat;background-size: 41px;opacity: 1;"></div>-->
+
+<!-- ... end Preloader -->
+
+
+<!-- Header -->
+
+<header class="header header--menu-rounded header--blue-lighteen" id="site-header">
+
+
+	<div class="header-lines-decoration">
+		<span class="bg-secondary-color"></span>
+		<span class="bg-blue"></span>
+		<span class="bg-blue-light"></span>
+		<span class="bg-orange-light"></span>
+		<span class="bg-red"></span>
+		<span class="bg-green"></span>
+		<span class="bg-secondary-color"></span>
+	</div>
+
+	<div class="container">
+
+		<a href="#" id="top-bar-js" class="top-bar-link">
+			<svg class="tenforward-icon tenforward-icon-arrow-top">
+				<use xlink:href="#tenforward-icon-arrow-top"></use>
+			</svg>
+		</a>
+		<div class="header-content-wrapper">
+
+			<div class="site-logo">
+				<a href="/" class="full-block"></a>
+				<img src="{%  static 'img/logo.png' %}" alt="Tenforward">
+				<div class="logo-text">
+					<div class="logo-title">Tenforward</div>
+					<div class="logo-sub-title">Your Data</div>
+				</div>
+			</div>
+
+			<nav id="primary-menu" class="primary-menu">
+
+				<!-- menu-icon-wrapper -->
+
+				<a href='javascript:void(0)' id="menu-icon-trigger" class="menu-icon-trigger showhide">
+					<span class="mob-menu--title">Menu</span>
+					<span id="menu-icon-wrapper" class="menu-icon-wrapper">
+						<svg width="1000px" height="1000px">
+							<path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+							<path id="pathE" d="M 300 500 L 700 500"></path>
+							<path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+						</svg>
+					</span>
+				</a>
+
+				<ul class="primary-menu-menu">
+					<li class="menu-item-has-children">
+						<a href="/">Home</a>
+					</li>
+
+                    {% main_menu template="menu/main_menu.html" %}
+
+				</ul>
+				<ul class="nav-add">
+					<li class="search search_main">
+						<a href="#" class="js-open-search-popup">
+							<svg class="tenforward-icon tenforward-icon-search cd-nav-trigger">
+								<use xlink:href="#tenforward-icon-search"></use>
+							</svg>
+						</a>
+					</li>
+				</ul>
+				<div class="search-standard">
+					<form id="search-header" name="form-search-header" method="post">
+						<div class="typeahead__container">
+							<div class="typeahead__field">
+
+							<span class="typeahead__query">
+								<input class="js-typeahead" name="tenforward_posts[query]" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
+							</span>
+								<button type="submit" class="form-icon">
+									<svg class="tenforward-icon tenforward-icon-search">
+										<use xlink:href="#tenforward-icon-search"></use>
+									</svg>
+								</button>
+								<span class="close js-popup-clear-input form-icon">
+								<svg class="tenforward-icon tenforward-icon-cancel-1"><use xlink:href="#tenforward-icon-cancel-1"></use></svg>
+							</span>
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</nav>
+
+		</div>
+
+	</div>
+
+</header>
+
+<div class="header-spacer"></div>
+
+<!-- ... End Header -->
+
+<div class="content-wrapper">
+
+        {% block maincontent %}
+
+            {% block content %}
+
+            {% endblock %}
+
+    {% endblock %}
+
+
+
+</div>
+
+
+<!-- Footer -->
+
+<footer class="footer" id="site-footer">
+	<div class="header-lines-decoration">
+		<span class="bg-secondary-color"></span>
+		<span class="bg-blue"></span>
+		<span class="bg-blue-light"></span>
+		<span class="bg-orange-light"></span>
+		<span class="bg-red"></span>
+		<span class="bg-green"></span>
+		<span class="bg-secondary-color"></span>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+				<div class="widget w-info">
+					<div class="site-logo">
+						<a href="/" class="full-block"></a>
+						<div class="logo-text">
+							<div class="logo-title">Tenforward</div>
+							<div class="logo-sub-title">Your Data</div>
+						</div>
+					</div>
+
+					<p>
+                        Bar whipped est, con panna, spoon robusta skinny medium sit aged aroma filter.
+                        Blue mountain latte, kopi-luwak viennese caramelization french press filter
+                        acerbic filter. Dripper cultivar single origin caramelization irish beans dark.
+					</p>
+
+					<a href="/" class="learn-more">Would you Like to know More?</a>
+				</div>
+
+			</div>
+
+			<div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-12 col-sm-offset-0 col-xs-12">
+				<div class="widget w-list">
+
+					<h5 class="widget-title">Short Links</h5>
+					<ul class="list list--primary">
+						<li>
+							<a href="/">Home</a>
+							<svg class="tenforward-icon tenforward-icon-arrow-right">
+								<use xlink:href="#tenforward-icon-arrow-right"></use>
+							</svg>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-12 col-sm-offset-0 col-xs-12">
+				<div class="widget w-contacts">
+
+					<h5 class="widget-title">Contact with us</h5>
+					<div class="contact-item display-flex">
+						<svg class="tenforward-icon tenforward-icon-telephone-keypad-with-ten-keys">
+							<use xlink:href="#tenforward-icon-telephone-keypad-with-ten-keys"></use>
+						</svg>
+						<span class="info">+46 8-562 433 12 </span>
+					</div>
+					<div class="contact-item display-flex">
+						<svg class="tenforward-icon tenforward-icon-message-closed-envelope-1">
+							<use xlink:href="#tenforward-icon-message-closed-envelope-1"></use>
+						</svg>
+						<span class="info">support@tenforward.io</span>
+					</div>
+
+					<a href="#" class="btn btn--primary full-width btn--with-shadow js-message-popup cd-nav-trigger">
+						Contact Us!
+					</a>
+				</div>
+
+				<div class="widget w-follow">
+					<ul>
+						<li>Follow Us:</li>
+						<li>
+							<a href="#">
+                                <svg class="tenforward-icon" vxmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="15.8 15.8 25 25">
+                                    <path d="M32.8 24.7h-3.2v-2.1c0-0.8 0.5-1 0.9-1s2.3 0 2.3 0v-3.5l-3.1 0c-3.5 0-4.3 2.6-4.3 4.3v2.3h-2v3.6h2c0 4.6 0 10.2 0 10.2h4.2c0 0 0-5.6 0-10.2h2.8L32.8 24.7z"></path>
+                                </svg>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+                                <svg class="tenforward-icon" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" ></path>
+                                </svg>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<svg class="tenforward-icon" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" ></path>
+                                </svg>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="sub-footer">
+		<a class="back-to-top" href="#">
+			<svg class="tenforward-icon tenforward-icon-arrow-top">
+				<use xlink:href="#tenforward-icon-arrow-top"></use>
+			</svg>
+		</a>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <span>
+                    <p class="m-0 text-center text-white">Copyright © 2019<script>new Date().getFullYear()>2019&&document.write("-"+new Date().getFullYear());</script> Built by <a href="https://www.tenforward.io/" >Tenforward</a>
+        </p>
+                </span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<!-- End Footer -->
+
+
+<!-- Send Message Popup -->
+
+<div class="window-popup message-popup">
+	<a href="#" class="popup-close js-popup-close cd-nav-trigger">
+		<svg class="tenforward-icon tenforward-icon-cancel-1">
+			<use xlink:href="#tenforward-icon-cancel-1"></use>
+		</svg>
+	</a>
+
+	<div class="send-message-popup">
+		<h5>Contact Us!</h5>
+		<p>Our Coffee is the best, it's the best, we promise!.</p>
+		<form class="form-validate contact-form tenf-submit" method="post" data-nonce="tenf-submit-form-nonce" data-type="standard" action="">
+			<div class="with-icon">
+				<input name="name" placeholder="Your Name" type="text" required>
+				<svg class="tenforward-icon tenforward-icon-user"><use xlink:href="#tenforward-icon-user"></use></svg>
+			</div>
+
+			<div class="with-icon">
+				<input name="email" placeholder="Email Adress" type="text" required>
+				<svg class="tenforward-icon tenforward-icon-message-closed-envelope-1"><use xlink:href="#tenforward-icon-message-closed-envelope-1"></use></svg>
+			</div>
+
+			<div class="with-icon">
+				<input class="with-icon" name="phone" placeholder="Phone Number" type="tel" required>
+				<svg class="tenforward-icon tenforward-icon-telephone-keypad-with-ten-keys"><use xlink:href="#tenforward-icon-telephone-keypad-with-ten-keys"></use></svg>
+			</div>
+
+			<div class="with-icon">
+				<input class="with-icon" name="subject" placeholder="Subject" type="text" required>
+				<svg class="tenforward-icon tenforward-icon-icon-1"><use xlink:href="#tenforward-icon-icon-1"></use></svg>
+			</div>
+
+			<div class="with-icon">
+				<textarea name="message" required placeholder="Your Message" rows="5"></textarea>
+				<svg class="tenforward-icon tenforward-icon-edit"><use xlink:href="#tenforward-icon-edit"></use></svg>
+			</div>
+
+			<button class="btn btn--green btn--with-shadow full-width">
+				Contact Us
+			</button>
+		</form>
+	</div>
+</div>
+
+<!-- Send Message Popup -->
+
+
+<!-- Search Popup -->
+
+<div class="search-popup search--dark">
+	<a href="#" class="popup-close js-popup-close cd-nav-trigger">
+		<svg class="tenforward-icon tenforward-icon-cancel-1">
+			<use xlink:href="#tenforward-icon-cancel-1"></use>
+		</svg>
+	</a>
+
+	<div class="search-full-screen">
+
+		<div class="search-standard">
+
+			<form id="search-header-1" name="form-search-header" method="post">
+				<div class="typeahead__container">
+					<div class="typeahead__field">
+
+						<span class="typeahead__query">
+							<input class="js-typeahead" name="tenforward_posts[query]" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
+						</span>
+						<button type="submit" class="form-icon">
+							<svg class="tenforward-icon tenforward-icon-search">
+								<use xlink:href="#tenforward-icon-search"></use>
+							</svg>
+						</button>
+						<span class="close js-popup-clear-input form-icon">
+							<svg class="tenforward-icon tenforward-icon-cancel-1"><use xlink:href="#tenforward-icon-cancel-1"></use></svg>
+						</span>
+
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+
+
+<!-- ... end Search Popup -->
+
+
+<!-- Tenforward SVG-icons -->
+
+{% include "includes/tenforward_icons.html" %}
+
+<!-- ... end Tenforward SVG-icons -->
+
+
+<!-- jQuery first, then Other JS. -->
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.js' %}"></script>
+
+<!-- jQuery-scripts -->
+
+<script type="text/javascript" src="{% static 'js/js-plugins/ajax-pagination.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery.countdown.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/js-plugins/crum-mega-menu.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/swiper.jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery.typeahead.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/velocity.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/js-plugins/waypoints.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery-countTo.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery.nice-select.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/imagesLoaded.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery.magnific-popup.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/jquery.matchHeight.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/Headroom.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/smooth-scroll.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/segment.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/bootstrap.js' %}"></script>
+<!--<script src="js/js-plugins/moment.js"></script>-->
+<!--<script src="js/js-plugins/moment-timezone.js"></script>-->
+<script type="text/javascript" src="{% static 'js/js-plugins/isotope.pkgd.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/ion.rangeSlider.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js-plugins/parsley.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/tenforward_io_v1.js' %}"></script>
+
+<!-- jQuery-scripts for Modules (Send Message) -->
+<script type="text/javascript" src="{% static 'js/forms/src/js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/forms/src/js/sweetalert2.all.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/forms/src/js/scripts.js' %}"></script>
+<!-- /jQuery-scripts for Modules (Send Message) -->
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+
+<!-- Main Slider -->
+
+	<div class="tenf-module tenf-module-slider container-full-width">
+		<div class="swiper-container main-slider navigation-center-both-sides" data-effect="fade">
+
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				{% for aslide in self.slides %}
+                    {% if aslide.slide.text_placement == 'top' %}
+                        {% include "streams/blocks/includes/_slide_block1.html" with slide=aslide %}
+                    {% elif aslide.slide.text_placement == 'left' %}
+                        {% include "streams/blocks/includes/_slide_block2.html" with slide=aslide %}
+                    {% elif aslide.slide.text_placement == 'right' %}
+                        {% include "streams/blocks/includes/_slide_block3.html" with slide=aslide %}
+                    {% endif %}
+                {% endfor %}
+			</div>
+
+			<!--Prev next buttons-->
+
+			<div class="btn-prev with-bg">
+				<svg class="tenforward-icon icon-hover tenforward-icon-arrow-left-1">
+					<use xlink:href="#tenforward-icon-arrow-left-1"></use>
+				</svg>
+				<svg class="tenforward-icon tenforward-icon-arrow-left1">
+					<use xlink:href="#tenforward-icon-arrow-left1"></use>
+				</svg>
+			</div>
+
+			<div class="btn-next with-bg">
+				<svg class="tenforward-icon icon-hover tenforward-icon-arrow-right-1">
+					<use xlink:href="#tenforward-icon-arrow-right-1"></use>
+				</svg>
+				<svg class="tenforward-icon tenforward-icon-arrow-right1">
+					<use xlink:href="#tenforward-icon-arrow-right1"></use>
+				</svg>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- ... end Main Slider -->

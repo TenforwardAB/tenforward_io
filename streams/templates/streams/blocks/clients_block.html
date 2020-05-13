@@ -1,0 +1,22 @@
+{% load wagtailcore_tags wagtailimages_tags static streams_tags%}
+<!-- Clients Block -->
+
+	<section class="tenf-module tenf-clients background-contain bg-yellow">
+		<div class="container">
+			<div class="row">
+                {% if self.clients %}
+                {% for client in self.clients %}
+				<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+					<a class="clients-item" href="#">
+							<span class="clients-images">
+                                {% image client.logo_image max-140x35 %}
+							</span>
+					</a>
+				</div>
+                {% endfor %}
+                {% endif %}
+			</div>
+		</div>
+	</section>
+
+	<!-- ... end Clients Block -->

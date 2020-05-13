@@ -1,0 +1,24 @@
+{% load streams_tags %}
+
+<div class="image-panel-rollover">
+  <div class="image-panel-rollover__entry">
+    {% link_url self.link as link_url %}
+    {% if link_url %}
+      <a class="image-panel-rollover__image-link" href="{{ link_url }}"><span></span></a>
+    {% endif %}
+    {% include 'streams/blocks/image_panel_block-image_square.html' with image=self.image %}
+    {% if self.title or self.desc or link_url %}
+      <div class="image-panel-rollover__drawer">
+        {% if self.title %}
+          <div class="image-panel-rollover__title"><span class="image-panel-rollover__title--vertically-centered">{{ self.title }}</span></div>
+        {% endif %}
+        {% if self.desc %}
+          <div class="image-panel-rollover__blurb">{{ self.desc }}</div>
+        {% endif %}
+        {% if link_url %}
+          <a href="{{ link_url }}" class="read-more-link">Read more...</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

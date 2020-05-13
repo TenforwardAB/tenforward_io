@@ -1,0 +1,117 @@
+@mixin IE-compatible-flex-width($width) {
+  flex: 1 1 auto;
+  width: $width;
+}
+
+@mixin gutter($width) {
+  $classname: "gutter-#{$width}";
+  $half: $width/2;
+
+  .row.#{$classname} {
+      margin-left: -$half;
+      margin-right: -$half;
+  }
+  .row.#{$classname} .col-lg-1,
+  .row.#{$classname} .col-lg-2,
+  .row.#{$classname} .col-lg-3,
+  .row.#{$classname} .col-lg-4,
+  .row.#{$classname} .col-lg-5,
+  .row.#{$classname} .col-lg-6,
+  .row.#{$classname} .col-lg-7,
+  .row.#{$classname} .col-lg-8,
+  .row.#{$classname} .col-lg-9,
+  .row.#{$classname} .col-lg-10,
+  .row.#{$classname} .col-lg-11,
+  .row.#{$classname} .col-lg-12,
+  .row.#{$classname} .col-md-1,
+  .row.#{$classname} .col-md-2,
+  .row.#{$classname} .col-md-3,
+  .row.#{$classname} .col-md-4,
+  .row.#{$classname} .col-md-5,
+  .row.#{$classname} .col-md-6,
+  .row.#{$classname} .col-md-7,
+  .row.#{$classname} .col-md-8,
+  .row.#{$classname} .col-md-9,
+  .row.#{$classname} .col-md-10,
+  .row.#{$classname} .col-md-11,
+  .row.#{$classname} .col-md-12,
+  .row.#{$classname} .col-sm-1,
+  .row.#{$classname} .col-sm-2,
+  .row.#{$classname} .col-sm-3,
+  .row.#{$classname} .col-sm-4,
+  .row.#{$classname} .col-sm-5,
+  .row.#{$classname} .col-sm-6,
+  .row.#{$classname} .col-sm-7,
+  .row.#{$classname} .col-sm-8,
+  .row.#{$classname} .col-sm-9,
+  .row.#{$classname} .col-sm-10,
+  .row.#{$classname} .col-sm-11,
+  .row.#{$classname} .col-sm-12,
+  .row.#{$classname} .col-xs-1,
+  .row.#{$classname} .col-xs-2,
+  .row.#{$classname} .col-xs-3,
+  .row.#{$classname} .col-xs-4,
+  .row.#{$classname} .col-xs-5,
+  .row.#{$classname} .col-xs-6,
+  .row.#{$classname} .col-xs-7,
+  .row.#{$classname} .col-xs-8,
+  .row.#{$classname} .col-xs-9,
+  .row.#{$classname} .col-xs-10,
+  .row.#{$classname} .col-xs-11,
+  .row.#{$classname} .col-xs-12 {
+    padding-left: $half;
+    padding-right: $half;
+
+    // On portrait phones, ignore column layout rules and just stretch everything to the full width.
+    @media (max-width: 499px) {
+      @include IE-compatible-flex-width(100%);
+      max-width: unset;
+    }
+
+  }
+}
+
+@include gutter(0px);
+@include gutter(12px);
+@include gutter(20px);
+@include gutter(30px);
+@include gutter(40px);
+
+
+.row-wrapper {
+  &.full-width {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    @include desktop {
+      .row {
+        width: $responsive-grid-w;
+        margin: 0 auto;
+      }
+    }
+  }
+  @include portrait-tablet {
+    &.padded .row {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+
+  &.bg {
+    background-size: cover;
+  }
+}
+
+.grid-item {
+  height: 100%;
+  overflow: hidden;
+}
+
+// TODO: What is this for?
+.row > .grid-item > section > .row:first-child {
+  margin-top: 0;
+}

@@ -1,0 +1,69 @@
+.fancy-rich-text {
+  position: relative;
+  &.fixed {
+    overflow: hidden;
+  }
+
+  // Give left and right padding to keep the text separated from the screen edges on mobile.
+  .rich-text {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  // When a FancyRichTextBlock is given a background, or lives in column layout that has a background, it's text area
+  // needs all-around padding so the text doesn't butt up against the edge of the background.
+  &.bg .rich-text, .row-wrapper.bg & .rich-text {
+    padding: 10px;
+
+    @include desktop {
+      padding: 25px;
+    }
+  }
+
+  .background-image-container {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+  }
+
+  .background-image {
+    width: 100%;
+
+    // We only set height: auto on the desktop view because the block will change aspect ratios on smaller devices.
+    // This results in stretched images on phones and portrait tablets, but that's better than having the background not
+    // enclose the entire text area.
+    @include desktop {
+      height: auto;
+    }
+  }
+
+  // Don't give margin-top to a heading in the block if it's the first element.
+  .rich-text {
+    @include desktop {
+      // On desktop we want no left-padding, because that will pull the text away from the edge of the content area,
+      // but we do want right-padding for those times when a rich text block has column content to its right.
+      padding-left: 0;
+      padding-right: 25px;
+    }
+
+    h1, h2, h3, h4 {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  // Top-level (direct child of .content), non-background blocks need to have 0 padding, because we want them to reach
+  // the edges of the layout, like a normal Page's text would.
+  @include desktop {
+    .content > .block-FancyRichTextBlock &:not(.bg) {
+      .rich-text {
+        padding: 0;
+      }
+    }
+  }
+}
