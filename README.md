@@ -1,4 +1,4 @@
-#Tenforward.io
+# Tenforward.io
 
 This Wagtail Implementation is the working progress of the website for the Tenforward corporation.
 
@@ -34,3 +34,6 @@ Variation 1
 
 Variation 2
 ![Homepage2](docs/images/screencapture2.png)
+
+Admin Area (Edit Homepage)
+![Admin-Homepage](docs/images/screencapture3.png)
