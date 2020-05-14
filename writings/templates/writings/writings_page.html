@@ -1,1 +1,87 @@
-All Writings Here
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags writings_tags el_pagination_tags  %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+    {% if search_term %}
+      <div class="">
+          <h1 class="page-title">Search Results for <span>{{ search_type }}: {{ search_term }}</span></h1>
+      </div>
+    {% endif %}
+
+    {% paginate 5 writings %}
+    {% for writing in writings %}
+        <!-- Blog Post -->
+        <div class="post3-main-div">
+            <div class="post3-textbox">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="post3-h pull-left">
+                            <a href="{% writing_date_url writing writing_page %}">{{ writing.title }}</a>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row news_news">
+                    <div class="col-xs-12">
+                        <ul class="list-inline ul-padding">
+                            <li>
+                                <i class="mdi-device-access-time first-post-icon"></i>
+                                <label class="icon-label">{{writing.date|date:"j M Y"}}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <figure>
+                <figcaption>
+                    <div class="hover-btn">
+                {% if writing.header_image %}
+                    {% image writing.header_image original as header_image %}
+                        <a title="" href="{{ header_image.url }}" class="boxer hover-btn1 btn-h adj-label" data-tooltip="View Photo" data-tooltip-stickto="top" data-tooltip-color="#313539" data-tooltip-animate-function="foldin">
+                            <i class="material-icons doctor-receipt-i">visibility</i>
+                        </a>
+                        <a class="hover-btn2 btn-h" data-tooltip="Like" data-tooltip-stickto="top" data-tooltip-color="#313539"><i class="material-icons doctor-receipt-i">favorite_border</i></a>
+                        <a class="hover-btn3 btn-h" data-tooltip="View details" data-tooltip-stickto="top" data-tooltip-color="#313539" data-tooltip-animate-function="foldin"><i class="material-icons doctor-receipt-i">receipt</i></a>
+                    </div>
+                </figcaption>
+
+                <div class="meet-img-hover">
+                    <img src="{{ header_image.url }}" class="fancy-img  center-block img-responsive" alt="meet-our-team" />
+                </div>
+                {%  endif %}
+            </figure>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="post3-text-box">
+                        {% if writing.excerpt %}
+                            {{ writing.excerpt|safe }}
+                        {% else %}
+                            {{ writing.body|safe|truncatewords_html:70 }}
+                        {% endif %}
+                        <a href="{% writing_date_url writing writing_page %}" class="btn post1-btn"> Read More
+                            <i class="mdi-navigation-arrow-forward post1-btn-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--End BlogPost-->
+        {% endfor %}
+
+    <!-- Pagination -->
+    {% comment %}
+    <ul class="pagination justify-content-center mb-4">
+      {% show_pages %}
+    </ul>
+    {%  endcomment %}
+
+{% endblock %}

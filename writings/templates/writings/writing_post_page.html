@@ -1,1 +1,5 @@
-One Writing Here
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags writings_tags el_pagination_tags  %}
+{% block content %}
+    {{ writing.title }}
+{% endblock content %}
