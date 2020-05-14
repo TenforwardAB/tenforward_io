@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from django.http import Http404, HttpResponse
 from django.utils.dateformat import DateFormat
 from django.utils.formats import date_format
@@ -20,15 +21,43 @@ from wagtail.core.blocks import StructBlock, RichTextBlock, CharBlock, StreamBlo
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalManyToManyField
 
 
 from streams import blocks as myblocks
 from wagtail_svgmap.blocks import ImageMapBlock
 
 
+@register_snippet
+class WritingCategory(models.Model):
+	"""
+	Categories for the Writings (IE. Blog/News/Article)
+	"""
+	name = models.CharField(max_length=100)
+	slug = models.SlugField(
+		verbose_name='slug',
+		allow_unicode=True,
+		max_length=100
+	)
+
+	panels =[
+		FieldPanel("name"),
+		FieldPanel("slug")
+	]
+
+	class Meta:
+		verbose_name = "Writing Category"
+		verbose_name = "Writing Categories"
+		ordering = ["name"]
+
+	def __str__(self):
+		return self.name
+
+
+
 class WritingsPage(RoutablePageMixin, Page):
-	template = 'company/company_page.html'
+	template = 'writings/writings_page.html'
+
 	description = models.CharField(max_length=255, blank=True, )
 
 	content_panels = Page.content_panels + [
@@ -39,12 +68,13 @@ class WritingsPage(RoutablePageMixin, Page):
 		context = super(WritingsPage, self).get_context(request, *args, **kwargs)
 		context['posts'] = self.posts
 		context['blog_page'] = self
+		context['writing_types'] = WritingCategory.objects.all()
 		context['search_type'] = getattr(self, 'search_type', "")
 		context['search_term'] = getattr(self, 'search_term', "")
 		return context
 
 	def get_posts(self):
-		return PostPage.objects.descendant_of(self).live().order_by('-date')
+		return WritingPostPage.objects.descendant_of(self).live().order_by('-date')
 
 	@route(r'^(\d{4})/$')
 	@route(r'^(\d{4})/(\d{2})/$')
@@ -101,7 +131,30 @@ class WritingsPage(RoutablePageMixin, Page):
 
 class WritingPostPage(Page):
 	template = 'writings/writing_post_page.html'
-	pass
+
+	body = RichTextField(blank=True)
+	date = models.DateTimeField(verbose_name="Post date", default=datetime.datetime.today)
+
+	excerpt = RichTextField(
+		verbose_name='excerpt', blank=True, max_length=1000,
+	)
+
+	writing_categories = ParentalManyToManyField("writings.WritingCategory", blank=False)
+
+	content_panels = Page.content_panels + [
+		FieldPanel("body"),
+		FieldPanel("excerpt"),
+
+		MultiFieldPanel(
+			[
+				FieldPanel("writing_categories",  widget=forms.CheckboxSelectMultiple)
+			],
+			heading="Writing Types"
+		)
+	]
+
+
+
 
 class BlogPage(Page):
 	template = 'writings/blog_page.html'
