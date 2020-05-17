@@ -36,7 +36,7 @@ def writing_date_url(writing, writing_page):
     return url
 
 
-@register.inclusion_tag('blog/components/tags_list.html', takes_context=True)
+@register.inclusion_tag('writings/components/tags_list.html', takes_context=True)
 def tags_list(context, limit=None):
     writing_page = context['writing_page']
     tags = Tag.objects.all()
@@ -45,14 +45,14 @@ def tags_list(context, limit=None):
     return {'writing_page': writing_page, 'request': context['request'], 'tags': tags}
 
 
-@register.inclusion_tag('blog/components/categories_list.html', takes_context=True)
+@register.inclusion_tag('writings/components/categories_list.html', takes_context=True)
 def categories_list(context):
     writing_page = context['writing_page']
     categories = Category.objects.all()
     return {'writing_page': writing_page, 'request': context['request'], 'categories': categories}
 
 
-@register.inclusion_tag('blog/components/writing_categories_list.html', takes_context=True)
+@register.inclusion_tag('writings/components/writing_categories_list.html', takes_context=True)
 def writing_categories(context):
     writing_page = context['writing_page']
     writing = context['writing']
@@ -60,7 +60,7 @@ def writing_categories(context):
     return {'writing_page': writing_page, 'writing_categories': writing_categories, 'request': context['request']}
 
 
-@register.inclusion_tag('blog/components/writing_tags_list.html', takes_context=True)
+@register.inclusion_tag('writings/components/writing_tags_list.html', takes_context=True)
 def writing_tags_list(context):
     writing_page = context['writing_page']
     writing = context['writing']
@@ -69,7 +69,7 @@ def writing_tags_list(context):
 
     return {'writing_page': writing_page, 'request': context['request'], 'writing_tags': writing_tags}
 
-@register.inclusion_tag('blog/components/writing_tags_list_vertical.html', takes_context=True)
+@register.inclusion_tag('writings/components/writing_tags_list_vertical.html', takes_context=True)
 def writing_tags_list_vertical(context):
     writing_page = context['writing_page']
     writing = context['writing']
@@ -79,7 +79,7 @@ def writing_tags_list_vertical(context):
     return {'writing_page': writing_page, 'request': context['request'], 'writing_tags': writing_tags}
 
 
-@register.inclusion_tag('blog/comments/disqus.html', takes_context=True)
+@register.inclusion_tag('writings/comments/disqus.html', takes_context=True)
 def show_comments(context):
     writing_page = context['writing_page']
     writing = context['writing']

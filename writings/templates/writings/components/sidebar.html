@@ -2,6 +2,8 @@
 <!-- Sidebar-->
 
 			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+                {% comment %}
 				<aside aria-label="sidebar" class="sidebar sidebar-right">
 
 					<aside class="widget w-search">
@@ -13,26 +15,32 @@
 							</div>
 						</form>
 					</aside>
+					{% endcomment %}
 
 					<aside class="widget w-about">
 						<div class="site-logo">
 							<a href="index.html" class="full-block"></a>
-							<img src="img/logo.png" alt="tenforward">
+                            <img src="{%  static 'img/logo.png' %}" alt="Tenforward">
 							<div class="logo-text">
-								<div class="logo-title">tenforward</div>
-								<div class="logo-sub-title">app startup</div>
+								<div class="logo-title">Tenforward</div>
+								<div class="logo-sub-title">Your Data</div>
 							</div>
 						</div>
 
-						<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est
-							notare quam littera gothica, putamus parum claram, anteposuerit formas.
+						<p>We're going forward with our plans to implement quality strategic contingencies.
+                            Our exploratory research points to compatible monitored alignment.
 						</p>
 
-						<a href="index.html" class="btn btn-border btn--with-shadow c-primary">
+						<a href="https://www.soulmate.se" class="btn btn-border btn--with-shadow c-primary">
 							read more
 						</a>
 					</aside>
 
+                    <aside class="widget w-category">
+                        <h5 class="widget-title">Categories</h5>
+                    {% categories_list %}
+                    </aside>
+                    <!--
 					<aside class="widget w-category">
 						<h5 class="widget-title">Categories</h5>
 						<ul class="category-list">
@@ -73,6 +81,7 @@
 							</li>
 						</ul>
 					</aside>
+					-->
 
 					<aside class="widget w-popular-products tenf-module tenf-module-slider">
 						<h5 class="widget-title">Popular Projects</h5>
