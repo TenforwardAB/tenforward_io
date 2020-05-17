@@ -1,0 +1,15 @@
+{% load i18n wagtailroutablepage_tags %}
+
+<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+<div class="border-box">
+    <ul class="list-inline tags-li">
+        <li>
+            <h3><i class="mdi-action-label border-icon"></i> Tags:</h3>
+        </li>
+         {% for tag in post_tags %}
+        <li>
+            <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{%  endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

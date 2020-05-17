@@ -115,6 +115,16 @@ class WritingsPage(RoutablePageMixin, Page):
 			raise Http404
 		return Page.serve(post_page, request, *args, **kwargs)
 
+	@route(r'^(.+)/$')
+	@route(r'^blog/(.+)/$')
+	@route(r'^news/(.+)/$')
+	@route(r'^article/(.+)/$')
+	def writing_by_slug(self, request, slug, *args, **kwargs):
+		post_page = self.get_writings().filter(slug=slug).first()
+		if not post_page:
+			raise Http404
+		return Page.serve(post_page, request, *args, **kwargs)
+
 	@route(r'^tag/(?P<tag>[-\w]+)/$')
 	def writing_by_tag(self, request, tag, *args, **kwargs):
 		self.search_type = 'tag'
@@ -132,6 +142,12 @@ class WritingsPage(RoutablePageMixin, Page):
 	@route(r'^$')
 	def writing_list(self, request, *args, **kwargs):
 		self.writings = self.get_writings()
+		search_query = request.GET.get('q', None)
+		print(search_query)
+		if search_query:
+			self.writings = self.writings.filter(body__contains=search_query)
+			self.search_term = search_query
+			self.search_type = 'search'
 		return Page.serve(self, request, *args, **kwargs)
 
 	@route(r'^search/$')
@@ -148,6 +164,7 @@ class WritingsPage(RoutablePageMixin, Page):
 class WritingPostPage(Page):
 	template = 'writings/writing_post_page.html'
 
+
 	body = RichTextField(blank=True)
 	date = models.DateTimeField(verbose_name="Post date", default=datetime.datetime.today)
 
@@ -155,10 +172,27 @@ class WritingPostPage(Page):
 		verbose_name='excerpt', blank=True, max_length=1000,
 	)
 
+	header_image = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True, blank=True,
+		on_delete=models.SET_NULL,
+		related_name='+',
+	)
+	video_url = models.CharField(blank=True, null=True, max_length=255)
+	video_thumb = models.ForeignKey(
+		'wagtailimages.Image',
+		null=True, blank=True,
+		on_delete=models.SET_NULL,
+		related_name='+',
+	)
+
 	writing_categories = ParentalManyToManyField("writings.WritingCategory", blank=False)
 	tags = ClusterTaggableManager(through="writings.WritingPageTag", blank=True)
 
 	content_panels = Page.content_panels + [
+		ImageChooserPanel('header_image'),
+		ImageChooserPanel('video_thumb'),
+		FieldPanel("video_url"),
 		FieldPanel("body"),
 		FieldPanel("excerpt"),
 
@@ -169,6 +203,10 @@ class WritingPostPage(Page):
 			heading="Writing Types"
 		),
 		FieldPanel("tags")
+	]
+
+	settings_panels = Page.settings_panels + [
+		FieldPanel('date'),
 	]
 
 	@property

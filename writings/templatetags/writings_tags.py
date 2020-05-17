@@ -24,6 +24,17 @@ def writing_date_url(writing, writing_page):
     )
     return url
 
+@register.simple_tag()
+def writing_date_url(writing, writing_page):
+    writing_date = writing.date
+    url = writing_page.url + writing_page.reverse_subpage(
+        'writing_by_slug',
+        args=(
+            writing.slug,
+        )
+    )
+    return url
+
 
 @register.inclusion_tag('blog/components/tags_list.html', takes_context=True)
 def tags_list(context, limit=None):

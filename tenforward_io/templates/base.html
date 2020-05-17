@@ -1,4 +1,4 @@
-{% load static wagtailuserbar menu_tags compress streams_tags%}
+{% load static wagtailuserbar menu_tags compress wagtailroutablepage_tags streams_tags%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,12 +101,13 @@
 					</li>
 				</ul>
 				<div class="search-standard">
-					<form id="search-header" name="form-search-header" method="post">
+					<form id="search-header" name="form-search-header" method="get" >
+
 						<div class="typeahead__container">
 							<div class="typeahead__field">
 
 							<span class="typeahead__query">
-								<input class="js-typeahead" name="tenforward_posts[query]" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
+								<input class="js-typeahead" name="q" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
 							</span>
 								<button type="submit" class="form-icon">
 									<svg class="tenforward-icon tenforward-icon-search">
@@ -337,12 +338,13 @@
 
 		<div class="search-standard">
 
-			<form id="search-header-1" name="form-search-header" method="post">
+			<form id="search-header-1" name="form-search-header" method="get" action="">
+
 				<div class="typeahead__container">
 					<div class="typeahead__field">
 
 						<span class="typeahead__query">
-							<input class="js-typeahead" name="tenforward_posts[query]" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
+							<input class="js-typeahead" name="q" placeholder="What are you looking for?" autocomplete="off" type="search" autofocus>
 						</span>
 						<button type="submit" class="form-icon">
 							<svg class="tenforward-icon tenforward-icon-search">

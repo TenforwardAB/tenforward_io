@@ -14,6 +14,8 @@ INTERNAL_IPS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+CSRF_USE_SESSIONS = True
+CSRF_COOKIE_HTTPONLY = True
 
 try:
     from .local import *

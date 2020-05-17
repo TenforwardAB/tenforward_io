@@ -3,7 +3,7 @@
 * https://leafletjs.com/
 * --------------------- */
 
-CRUMINA.maps = {
+TENF.maps = {
 	maps: {
 		mapUSA: {
 			config: {
@@ -88,5 +88,5 @@ CRUMINA.maps = {
 };
 
 $(document).ready(function () {
-	CRUMINA.maps.init();
+	TENF.maps.init();
 });

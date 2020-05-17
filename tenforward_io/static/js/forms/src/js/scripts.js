@@ -1,7 +1,7 @@
-if ( typeof ( CRUMINA ) === 'undefined' ) {
-    var CRUMINA = { };
+if ( typeof ( TENF ) === 'undefined' ) {
+    var TENF = { };
 }
-CRUMINA.submit = {
+TENF.submit = {
     $forms: null,
     init: function () {
         this.$forms = jQuery( 'form.tenf-submit' );
@@ -63,5 +63,5 @@ CRUMINA.submit = {
 };
 
 jQuery( document ).ready( function () {
-    CRUMINA.submit.init();
+    TENF.submit.init();
 } );

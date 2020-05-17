@@ -1,0 +1,28 @@
+{% load i18n wagtailroutablepage_tags %}
+
+<!--Categories-->
+<div class="category news_news2">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="category-h">Categories</h3>
+            <ul class="list-unstyled arrow_box-detail adj-icon-arrow">
+
+        {% for category in categories %}
+            {% if forloop.last %}
+                <li class="border-none">
+            {% else %}
+                <li>
+            {% endif %}
+                <a href="{% routablepageurl blog_page "post_by_category" category.slug %}">
+                    {{ category.name }}
+                    <i class="mdi-navigation-arrow-forward post1-right-icon1 pull-right"></i>
+                </a>
+            </li>
+        {% empty %}
+            {% trans 'No categories yet' %}
+        {% endfor %}
+
+      </ul>
+    </div>
+  </div>
+</div>

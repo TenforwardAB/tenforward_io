@@ -1,0 +1,5 @@
+{% load i18n wagtailroutablepage_tags %}
+
+    {% for tag in post_tags %}
+        <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{%  endif %}
+    {% endfor %}

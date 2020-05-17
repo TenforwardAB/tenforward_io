@@ -1,3 +1,9 @@
+<div class="row mb60">
+    <div class="col-lg-12">
+        <nav class="navigation">
 {% for page in pages %}
-  {{ page }}
+  {{ page.render_link|default:'<span>...</span>' }}
 {% endfor %}
+        </nav>
+    </div>
+</div>
