@@ -91,10 +91,6 @@ class WritingsPage(RoutablePageMixin, Page):
 	def get_writings(self):
 		return WritingPostPage.objects.descendant_of(self).live().order_by('-date')
 
-	@property
-	def articles(self):
-		return self.get_writings().filter(writing_categories__slug='writing_categories')
-
 	@route(r'^(\d{4})/$')
 	@route(r'^(\d{4})/(\d{2})/$')
 	@route(r'^(\d{4})/(\d{2})/(\d{2})/$')
@@ -225,7 +221,24 @@ class WritingPostPage(Page):
 
 class BlogPage(Page):
 	template = 'writings/blog_page.html'
-	pass
+
+	description = models.CharField(max_length=255, blank=True, )
+
+	content_panels = Page.content_panels + [
+		FieldPanel('description', classname="full")
+	]
+
+	def get_context(self, request, *args, **kwargs):
+		context = super(BlogPage, self).get_context(request, *args, **kwargs)
+		context['blogs'] = self.blogs
+		context['blog_page'] = self
+		context['search_type'] = getattr(self, 'search_type', "")
+		context['search_term'] = getattr(self, 'search_term', "")
+		return context
+
+	@property
+	def blogs(self):
+		return WritingPostPage.objects.descendant_of(self).live().order_by('-date').filter(writing_categories__slug='blog')
 
 
 class NewsPage(Page):
