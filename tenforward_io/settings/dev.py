@@ -12,6 +12,8 @@ INTERNAL_IPS = [
     '127.0.0.1'
 ]
 
+INSTALLED_APPS = INSTALLED_APPS + []
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CSRF_USE_SESSIONS = True

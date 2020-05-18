@@ -86,11 +86,14 @@ class WritingsPage(RoutablePageMixin, Page):
 		context['writing_types'] = WritingCategory.objects.all()
 		context['search_type'] = getattr(self, 'search_type', "")
 		context['search_term'] = getattr(self, 'search_term', "")
-		context['hoj'] = "Nu jäklar"
 		return context
 
 	def get_writings(self):
 		return WritingPostPage.objects.descendant_of(self).live().order_by('-date')
+
+	@property
+	def articles(self):
+		return self.get_writings().filter(writing_categories__slug='writing_categories')
 
 	@route(r'^(\d{4})/$')
 	@route(r'^(\d{4})/(\d{2})/$')
@@ -115,16 +118,6 @@ class WritingsPage(RoutablePageMixin, Page):
 			raise Http404
 		return Page.serve(post_page, request, *args, **kwargs)
 
-	@route(r'^(.+)/$')
-	@route(r'^blog/(.+)/$')
-	@route(r'^news/(.+)/$')
-	@route(r'^article/(.+)/$')
-	def writing_by_slug(self, request, slug, *args, **kwargs):
-		post_page = self.get_writings().filter(slug=slug).first()
-		if not post_page:
-			raise Http404
-		return Page.serve(post_page, request, *args, **kwargs)
-
 	@route(r'^tag/(?P<tag>[-\w]+)/$')
 	def writing_by_tag(self, request, tag, *args, **kwargs):
 		self.search_type = 'tag'
@@ -132,23 +125,20 @@ class WritingsPage(RoutablePageMixin, Page):
 		self.writings = self.get_writings().filter(tags__slug=tag)
 		return Page.serve(self, request, *args, **kwargs)
 
-	@route(r'^category/(?P<category>[-\w]+)/$')
-	def writing_by_category(self, request, category, *args, **kwargs):
+	@route(r'^category/(?P<writingcategory>[-\w]+)/$')
+	def writing_by_category(self, request, writingcategory, *args, **kwargs):
+		print('KKKKKKK')
 		self.search_type = 'category'
-		self.search_term = category
-		self.writings = self.get_writings().filter(categories__slug=category)
+		self.search_term = writingcategory
+		self.writings = self.get_writings().filter(writing_categories__slug=writingcategory)
 		return Page.serve(self, request, *args, **kwargs)
 
-	@route(r'^$')
-	def writing_list(self, request, *args, **kwargs):
-		self.writings = self.get_writings()
-		search_query = request.GET.get('q', None)
-		print(search_query)
-		if search_query:
-			self.writings = self.writings.filter(body__contains=search_query)
-			self.search_term = search_query
-			self.search_type = 'search'
-		return Page.serve(self, request, *args, **kwargs)
+	@route(r'^(.+)/$')
+	def writing_by_slug(self, request, slug, *args, **kwargs):
+		post_page = self.get_writings().filter(slug=slug).first()
+		if not post_page:
+			raise Http404
+		return Page.serve(post_page, request, *args, **kwargs)
 
 	@route(r'^search/$')
 	def writing_search(self, request, *args, **kwargs):
@@ -159,6 +149,19 @@ class WritingsPage(RoutablePageMixin, Page):
 			self.search_term = search_query
 			self.search_type = 'search'
 		return Page.serve(self, request, *args, **kwargs)
+
+
+	@route(r'^$')
+	def writing_list(self, request, *args, **kwargs):
+		self.writings = self.get_writings()
+		search_query = request.GET.get('q', None)
+		if search_query:
+			self.writings = self.writings.filter(body__contains=search_query)
+			self.search_term = search_query
+			self.search_type = 'search'
+		return Page.serve(self, request, *args, **kwargs)
+
+
 
 
 class WritingPostPage(Page):
